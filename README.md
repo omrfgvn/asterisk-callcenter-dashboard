@@ -1,7 +1,3 @@
-# asterisk-callcenter-dashboard
-Dashboard for Asterisk Callcenter Application
-
-
 # Asterisk Call Center Dashboard
 
 This project simulates a VoIP-based call center using **Asterisk PBX** and a real-time **HTML dashboard**. It allows users to monitor the availability of call center agents assigned to **Sales** and **Technical Support** departments.
