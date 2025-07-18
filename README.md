@@ -32,17 +32,18 @@ To build an open-source, easy-to-deploy, realistic call center simulation where 
 
 ## 📁 Project Structure
 
+```text
 asterisk-callcenter-dashboard/
 ├── templates/
-│ └── index.html # Main dashboard interface
-├── app.py # Flask app
-├── checkAsterisk.py # Handles CLI interaction with Asterisk
-├── sip.conf # SIP user configuration
-├── extensions.conf # Dial plan definitions
-├── queues.conf # Queue configurations
+│   └── index.html        # Main dashboard interface
+├── app.py                # Flask app
+├── checkAsterisk.py      # Handles CLI interaction with Asterisk
+├── sip.conf              # SIP user configuration
+├── extensions.conf       # Dial plan definitions
+├── queues.conf           # Queue configurations
 ├── LICENSE
 └── README.md
-
+```
 ---
 
 ## 🚀 Installation
