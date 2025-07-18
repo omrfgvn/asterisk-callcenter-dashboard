@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-from asterisk_komut import sip_peers_durumunu_getir
+from checkAsterisk import get_status_peers
 
 app = Flask(__name__)
 
@@ -9,7 +9,7 @@ def index():
 
 @app.route('/api/agents')
 def agents():
-    output = sip_peers_durumunu_getir()
+    output = get_status_peers()
     agents = []
     customers = []
 
@@ -43,4 +43,4 @@ def agents():
     })
 
 if __name__ == '__main__':
-    app.run(host='10.1.150.66', port=5000, debug=True)
+    app.run(host='x.x.x.x', port=5000, debug=True)
