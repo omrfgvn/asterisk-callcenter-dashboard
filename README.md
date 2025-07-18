@@ -89,8 +89,10 @@ Open the dashboard in your browser:
 
 💬 CRM or ticket system integration
 
-👨‍💻 Developers
+👨‍💻 Developers:
+
 Ömer Faruk GÜVEN
+
 Mehmet Burak KARABULUT
 
 📬 Contact
