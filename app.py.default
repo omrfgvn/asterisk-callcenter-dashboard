@@ -1,0 +1,46 @@
+from flask import Flask, jsonify, render_template
+from asterisk_komut import sip_peers_durumunu_getir
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api/agents')
+def agents():
+    output = sip_peers_durumunu_getir()
+    agents = []
+    customers = []
+
+    excluded_names = ['omer', 'hakan', 'arda','username']  # müşteriler burada
+    hidden_names = ['username']
+    lines = output.splitlines()
+    for line in lines:
+        if '/' in line:
+            parts = line.split()
+            name = parts[0].split('/')[1].lower()
+
+            if name in hidden_names:
+                continue
+
+            # Durumu belirle
+            if 'OK' in line:
+                status = 'ONLINE'
+            else:
+                status = 'OFFLINE'
+
+            if name in excluded_names:
+                # Müşteri
+                customers.append({'name': name, 'status': status})
+            else:
+                # Temsilci
+                agents.append({'name': name, 'status': status})
+
+    return jsonify({
+        'agents': agents,
+        'customers': customers
+    })
+
+if __name__ == '__main__':
+    app.run(host='10.1.150.66', port=5000, debug=True)

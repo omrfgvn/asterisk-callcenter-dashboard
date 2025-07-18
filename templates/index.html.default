@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Agent Durumları</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        table { border-collapse: collapse; width: 50%; }
+        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .ok { color: green; }
+        .unreachable { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Agent Durumları</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Agent</th>
+                <th>Durum</th>
+            </tr>
+        </thead>
+        <tbody id="agentTable">
+        </tbody>
+    </table>
+
+    <script>
+        async function getAgents() {
+            const response = await fetch('/api/agents');
+            const agents = await response.json();
+            const tbody = document.getElementById('agentTable');
+            tbody.innerHTML = '';
+
+            agents.forEach(agent => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${agent.name}</td>
+                    <td class="${agent.status === 'OK' ? 'ok' : 'unreachable'}">${agent.status}</td>
+
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        setInterval(getAgents, 3000); // her 3 saniyede bir yenile
+        getAgents();
+    </script>
+</body>
+</html>
