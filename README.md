@@ -1,127 +1,103 @@
-# Asterisk Call Center Dashboard
+# 📞 Asterisk Call Center Dashboard
 
-This project simulates a VoIP-based call center using **Asterisk PBX** and a real-time **HTML dashboard**. It allows users to monitor the availability of call center agents assigned to **Sales** and **Technical Support** departments.
+This project simulates a VoIP-based call center environment using **Asterisk PBX** and a real-time **HTML dashboard**. It allows monitoring the online/offline status of agents assigned to **Sales** and **Technical Support** departments.
 
 ---
 
 ## 🎯 Project Purpose
 
-The goal is to create a realistic call center environment where SIP-based agents can receive and answer calls, and users can view real-time agent availability through a web dashboard. The system is designed to demonstrate how a basic call center can be managed using open-source tools.
+To build an open-source, easy-to-deploy, realistic call center simulation where SIP-based agents can receive calls and their availability can be tracked via a live web dashboard.
 
 ---
 
-## 🧪 Technologies Used
+## ⚙️ Technologies Used
 
-- **Asterisk PBX** – Handles SIP registration, call routing, and queues  
-- **MicroSIP** – Lightweight SIP softphone for call agents  
-- **Python** – Backend logic and connection to Asterisk via AMI  
-- **HTML / CSS / JavaScript** – Responsive and dynamic frontend  
-- **AJAX / WebSocket (planned)** – For live dashboard updates  
-- **Asterisk AMI** – Asterisk Manager Interface used for real-time system information
-
----
-
-## 📊 Features
-
-- 📞 Realistic simulation of a multi-department call center  
-- 👥 Agent status tracking: Available, In Call, Busy, Offline  
-- 🌐 Web-based live dashboard showing agent availability  
-- 🧩 Simple integration with existing Asterisk installations  
-- 🧭 Clear separation between **Sales** and **Technical Support** teams
+- **Asterisk PBX** – Manages SIP registrations, calls, and queues  
+- **MicroSIP** – Lightweight SIP softphone for agents  
+- **Python (Flask)** – Backend and API server  
+- **HTML / CSS / JavaScript** – Frontend UI  
+- **Socket polling** – Refreshes data every 3 seconds  
+- **subprocess** – Communicates with Asterisk CLI
 
 ---
 
-## 🧱 Project Structure
+## 🔍 Features
 
-```
+- 🔄 Real-time agent and customer status monitoring  
+- 👥 Separation between Sales and Technical Support departments  
+- 💡 Simple and intuitive status indicators: ONLINE / OFFLINE  
+- 🌐 Accessible from any web browser
+
+---
+
+## 📁 Project Structure
+
 asterisk-callcenter-dashboard/
-├── static/
-│   └── style.css
 ├── templates/
-│   └── dashboard.html
-├── app.py
-├── utils/
-│   └── ami_handler.py
-├── requirements.txt
+│ └── index.html # Main dashboard interface
+├── app.py # Flask app
+├── checkAsterisk.py # Handles CLI interaction with Asterisk
+├── sip.conf # SIP user configuration
+├── extensions.conf # Dial plan definitions
+├── queues.conf # Queue configurations
+├── LICENSE
 └── README.md
-```
 
 ---
 
-## ⚙️ Installation
+## 🚀 Installation
 
-1. **Set up Asterisk** on a Linux server (Debian/Ubuntu recommended).
-2. Configure your Asterisk system:
-   - Add users in `sip.conf`
-   - Set dial plans in `extensions.conf`
-   - Define queues in `queues.conf`
-3. **Register MicroSIP clients** with the SIP accounts you've created.
+1. Install and configure **Asterisk PBX** (Debian/Ubuntu recommended).
+2. Set up SIP users, extensions, and queues using:
+   - `sip.conf`
+   - `extensions.conf`
+   - `queues.conf`
+3. Register your SIP users with a client like **MicroSIP**.
 4. Clone this repository:
 
    ```bash
    git clone https://github.com/yourusername/asterisk-callcenter-dashboard.git
    cd asterisk-callcenter-dashboard
    ```
+Install Python dependencies:
 
-5. Install Python dependencies:
-
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-6. Run the dashboard application:
+```bash
+pip install flask
+```
+Start the Flask app:
 
    ```bash
    python app.py
    ```
-
-7. Access the dashboard at:
-
-   ```
+Open the dashboard in your browser:
+   ```bash   
    http://localhost:5000
+   or
+   http://<your-server-ip>:5000
    ```
+🔮 Future Enhancements
+📡 Real-time updates via WebSocket
 
-   Or using your server’s IP address.
+📈 Per-agent call metrics (calls, duration, missed)
 
----
+🔐 Admin panel with authentication
 
-## 🔮 Future Enhancements
+📊 Visual charts for call analytics
 
-- ✅ Real-time updates using WebSocket
-- 📈 Call metrics per agent (total calls, durations, missed calls)
-- 🧑‍💼 Role-based admin panel
-- 📊 Visual graphs for call volume over time
-- 🔔 Slack/Telegram alert integration
-- 💬 CRM system or support ticket integration
+🛎️ Integration with Slack/Telegram for alerts
 
----
+💬 CRM or ticket system integration
 
-## 🧪 Example Use Case
+👨‍💻 Developers
+Ömer Faruk GÜVEN
+Mehmet Burak KARABULUT
 
-Imagine a company with two departments: **Sales** and **Technical Support**. Each department has its own call queue. This dashboard allows supervisors to monitor which agents are available, how many are busy, and helps improve response times by visualizing bottlenecks.
+📬 Contact
+For issues, suggestions, or contributions, please open an issue or contact us on GitHub.
 
----
-
-## 🤝 Contributing
-
-We welcome contributions from the open source community! To contribute:
-
-1. Fork the project 🍴  
-2. Create a feature branch (`feature/your-feature`)  
-3. Commit your changes  
-4. Open a pull request ✔️  
+📝 License
+MIT License © 2025
 
 ---
 
-## 📜 License
-
-MIT License © 2025  
-Developed by [Mehmet Burak KARABULUT](https://github.com/mbk2103) & [Ömer Faruk GÜVEN](https://github.com/omrfgvn)
-
----
-
-## 📬 Contact
-
-For issues, suggestions or improvements, please open an [issue](https://github.com/omrfgvn/asterisk-callcenter-dashboard/issues) or contact us via GitHub.
-
----
+Let me know if you’d like to auto-generate a GitHub Pages demo site or add a screenshot to the README.
